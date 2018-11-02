@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  form.form-signin(action="/register" method="post")
+    .text-center.mb-4
+      h1.h3.mb-3.font-weight-normal Sign up 
+    .form-label-group
+      input#inputUser.form-control(type='text' placeholder='Username' required='' autofocus='')
+    .form-label-group
+      input#inputEmail.form-control(type='email' placeholder='Email address' required='' autofocus='')
+    .form-label-group
+      input#inputPassword.form-control(type='password' placeholder='Password' required='')
+    .form-label-group
+      input#inputPassword.form-control(type='password' placeholder='Confirm Password' required='')
+    button.btn.btn-lg.btn-primary.btn-block(type='submit') Register
+    .footer-copyright.text-center.py-3
+      | &copy; 2018 Copyright:
+      a(href='')  Quathfiles.com
