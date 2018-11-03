@@ -21,24 +21,15 @@ authController.register = function (req, res) {
 // Post registration
 authController.doRegister = function (req, res) {
   User.register(new User({
-    username: req.body.inputUser,
-  }), req.body.inputPassword, function (err, user) {
+    username: req.body.username,
+    name: req.body.name
+  }), req.body.password, function (err, user) {
     if (err) {
+      console.log('Error de registro');
       return res.render('auth/register', {
         user: user
       });
     }
-
-    passport.authenticate('local')(req, res, function () {
-    });
-    
-  }, req.body.inputEmail, function(err, user){
-    if(err){
-      return res.render('auth/register', {
-        user: user
-      });
-    }
-
     passport.authenticate('local')(req, res, function () {
       res.redirect('/');
     });
@@ -54,7 +45,8 @@ authController.login = function (req, res) {
 authController.doLogin = function (req, res) {
   passport.authenticate('local', {
     failureRedirect: '/login',
-    message: req.flash('Lol esta malo'),
+    failureFlash: true,
+    message: req.flash('Lol esta malo')
   })(req, res, function () {
     res.redirect('/');
   });

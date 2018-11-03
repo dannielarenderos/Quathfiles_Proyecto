@@ -18,10 +18,16 @@ block content
             a.nav-link(href='#') Contact us
           li.nav-item
             a.nav-link(href='#') About
-          li.nav-item
-            a.nav-link(href='/login') Login
-          li.nav-item
-            a.nav-link(href='/register') Registrarse
+          if(!user)
+            li.nav-item
+              a.nav-link(href='/login') Login
+            li.nav-item
+              a.nav-link(href='/register') Registrarse
+          if(user)
+            li.nav-item
+              a.nav-link(href='/users/profile') #{user.username}
+            li.nav-item
+              a.nav-link(href='/logout') Cerrar Sesion
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle(data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false') Go to
             .dropdown-menu(x-placement='bottom-start' style='position: absolute; transform: translate3d(0px, 46px, 0px); top: 0px; left: 0px; will-change: transform;')
