@@ -29,10 +29,10 @@ module.exports.hashPassword = async (password) => {
         throw new Error('Hashing failed', error);
     }
 };
-module.exports.comparePasswords = async (inputPassword, hashedPassword) => {
+module.exports.compararConstraseña = async (passAProbar, hashedPassword) => {
     try {
-        return await bcrypt.compare(inputPassword, hashedPassword);
+        return await bcrypt.compare(passAProbar, hashedPassword);
     } catch(error) {
-        throw new Error('Comparing failed', error);
+        throw new Error('No coincide', error);
     }
 };

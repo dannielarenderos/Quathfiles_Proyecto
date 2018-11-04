@@ -30,6 +30,8 @@ block content
               a.nav-link(href='/logout') Cerrar Sesion
             li.nav-item
               a.nav-link(href='/subir') Subir Archivo
+            li.nav-item
+              a.nav-link(href='/contact') Contactanos :D
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle(data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false') Go to
             .dropdown-menu(x-placement='bottom-start' style='position: absolute; transform: translate3d(0px, 46px, 0px); top: 0px; left: 0px; will-change: transform;')
@@ -43,6 +45,8 @@ block content
           button.btn.btn-secondary.my-2.my-sm-0(type='submit') Search
   .jumbotron
     h2.display-3 Hello, world!
+    if(message)
+      p #{message}
     p.lead
       | This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
       | featured content or information.

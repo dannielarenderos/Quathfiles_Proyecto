@@ -21,14 +21,11 @@ passport.use('local', new LocalStrategy({
     passReqToCallback: false
 }, async (email, password, done) => {
     try {
-        // 1) Check if the email already exists
         const user = await User.findOne({ 'email': email });
         if (!user) {
             return done(null, false, { message: 'Unknown User' });
         }
-
-        // 2) Check if the password is correct
-        const isValid = User.comparePasswords(password, user.password);
+        const isValid = User.compararConstraseña(password, user.password);
         if (isValid) {
             return done(null, user);
         } else {

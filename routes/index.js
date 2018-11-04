@@ -25,5 +25,9 @@ router.get('/logout', auth.logout);
 router.get('/subir', auth.Upload);
 //router para hacer subida
 router.post('/subir', auth.doUpload);
+//router para comentarios
+router.get('/contact', auth.Contact);
+//router para enviar comentarios
+router.post('/contact', auth.DoContact);
 
 module.exports = router;
