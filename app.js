@@ -12,6 +12,7 @@ var MongoStore = require('connect-mongo')(session);
 var localStrategy = require('passport-local').Strategy;
 var user = require('./models/user');
 var flash = require('flash');
+var upload= require("express-fileupload");
 
 //require('./config/passport');
 // Import routers
@@ -43,7 +44,7 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(upload());
 
 // Manejando sessiones
 app.use(session({
@@ -58,6 +59,7 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // Configurando la estrategia 
 passport.use(user.createStrategy());

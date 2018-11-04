@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  form(action='/subir', method='post', enctype="multipart/form-data")
+    input#filename(type='file', name='filename')
+    input(type='submit', value='upload')

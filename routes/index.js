@@ -21,4 +21,9 @@ router.post('/login', auth.doLogin);
 // route for logout action
 router.get('/logout', auth.logout);
 
+//router para subir
+router.get('/subir', auth.Upload);
+//router para hacer subida
+router.post('/subir', auth.doUpload);
+
 module.exports = router;

@@ -2,10 +2,13 @@
 var mongoose = require("mongoose");
 var passport = require("passport");
 var User = require("../models/User");
+var fs= require("fs");
+var upload= require("express-fileupload");
 
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+app.use(upload());
 var expressValidator = require('express-validator');
 
 var authController = {};
@@ -44,7 +47,9 @@ authController.doRegister = function (req, res) {
         user: user
       });
     }else{
+      
       passport.authenticate('local')(req, res, function () {
+        fs.mkdirSync('../public/cloudQF/'+username);
         res.redirect('/');
       });
     }
@@ -75,5 +80,27 @@ authController.logout = function (req, res) {
   res.clearCookie('sessionid', {path: '/'});
   res.redirect('/');
 };
+
+authController.Upload = function (req, res) {
+  res.render('subir');
+};
+
+authController.doUpload = function (req, res) {
+  
+  if(req.files){
+    console.log(req.files);
+    var file= req.files.filename;
+    var filename = file.name;
+    file.mv("../public/cloudQF/"+req.user.username+"/"+filename, function(err){
+      if(err){
+        res.send('error ocurred');
+        throw err;
+      }
+      console.log('Subido con exito');
+    })
+  }
+  res.redirect('/');
+};
+
 
 module.exports = authController;
