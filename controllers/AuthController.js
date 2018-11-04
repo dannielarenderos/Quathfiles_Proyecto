@@ -52,6 +52,7 @@ authController.doRegister = function (req, res) {
 
 };
 
+
 // Go to login page
 authController.login = function (req, res) {
   res.render('auth/login');

@@ -13,6 +13,7 @@ var localStrategy = require('passport-local').Strategy;
 var user = require('./models/user');
 var flash = require('flash');
 
+//require('./config/passport');
 // Import routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

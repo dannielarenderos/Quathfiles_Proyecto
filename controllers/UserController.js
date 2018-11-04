@@ -7,7 +7,7 @@ var userController = {};
 
 userController.profile = function (req, res) {
     User.findOne({
-        username: req.user.inputUser
+        username: req.user.username
     }, function (err, docs) {
         if (err) next(err);
         res.send(docs);
