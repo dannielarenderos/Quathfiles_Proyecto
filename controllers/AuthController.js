@@ -115,37 +115,50 @@ authController.Contact = function(req,res){
 }
 
 authController.DoContact = function(req,res){
-  var transporter= nodemailer.createTransport({
-    service: 'gmail',
-    auth:{
-      xoauth2: xoauth2.createXOAuth2Generator({
-        user: 'noReplyQuathFiles@gmail.com',
-        clientId:'1065612072443-luev8gsig1ck2u80o73b4lofiktv5pso.apps.googleusercontent.com',
-        clientSecret:'uiRxiZd_UMCtQSZB_eERTbzS',
-        refreshToken:''
-      })
-    }
-  })
-  var mailOptions = {
-    from: req.user.username+' <foo@example.com>', // sender address
-    to: 'noReplyQuathFiles@gmail.com', // list of receivers
-    subject: 'Consulta', // Subject line
-    text: req.body.consulta, // plain text body
-    html: '<b>'+req.body.consulta+'</b>' // html body
+    const msj=`
+    <p>Nueva consulta</p> 
+    <h2>Informacion de contacto</h2> 
+    <ul> 
+      <li>Usuario : ${req.user.username}</li>
+      <li>Correo : ${req.user.email}</li>
+    </ul>
+    <h3>Mensaje: ${req.body.consulta}</h3>
+    `;
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      secure: false, // true for 465, false for other ports
+      port: 587,
+      auth: {
+          user: 'noReplyQuathFiles@gmail.com', // generated ethereal user
+          pass: 'Quath69Files420' // generated ethereal password
+      },
+      tls:{
+          rejectUnauthorized: false
+      }
+  });
+
+  // setup email data with unicode symbols
+  let mailOptions = {
+      from: '"'+req.user.username+'" <noReplyQuathFiles@gmail.com>',
+      to: 'noReplyQuathFiles@gmail.com', // list of receivers
+      subject: 'Consulta QhathFiles', // Subject line
+      text: req.body.consulta, // plain text body
+      html: msj
   };
-  transporter.sendMail(mailOptions, (error, res) => {
-    if (error) {
-        return console.log(error);
-    }
-    console.log('Mensaje enviado');
-  
+
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          return console.log(error);
+      }
+      console.log('Message sent'+info);
+  });
   res.render('principal',
     {
-      message: 'Comentario subido con exito',
+      message: 'Mensaje enviado con exito, gracias por su apoyo :D',
       user: req.user,
       title: 'QuathFiles'
-  });
-});
+    });
 }
 
 module.exports = authController;
