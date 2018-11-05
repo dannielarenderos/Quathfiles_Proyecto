@@ -12,7 +12,6 @@ app.use(upload());
 var expressValidator = require('express-validator');
 
 var nodemailer= require('nodemailer');
-var xoauth2= require('xoauth2');
 
 var authController = {};
 

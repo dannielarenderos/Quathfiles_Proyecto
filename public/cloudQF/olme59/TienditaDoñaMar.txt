@@ -1,0 +1,365 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package administradortienda;
+
+
+/**
+ *
+ * @author OLMEDO
+ */
+public class AdministradorTienda {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String... args) {
+        Menu menu = Menu.getInstance();
+        menu.mostrar();
+    }
+    
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package administradortienda;
+
+/**
+ *
+ * @author OLMEDO
+ */
+public class Producto {
+    private String nombre;
+    private int cantidad;
+    private float precio;
+    
+    public Producto() {
+    }
+    
+    public Producto(String nombre, int cantidad, float precio){
+        this.nombre=nombre;
+        this.cantidad=cantidad;
+        this.precio=precio;
+    }
+    public void Cargar(int carga){
+        this.cantidad+= carga;
+        System.out.println("Succes");
+    }
+    public void Descargar(int descarga){
+        if(descarga>this.cantidad){
+            System.out.println("No tienes tantos items para descargar");
+        }else{
+        this.cantidad-=descarga;
+        System.out.println("Succes"); 
+        }
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+    
+    @Override
+    public String toString() {
+        return "Producto{" + "Nombre=" + nombre + ", Cantidad=" + cantidad + ", Precio=" + precio + '}';
+
+    }
+}
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package administradortienda;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.*;
+
+/**
+ *
+ * @author OLMEDO
+ */
+public class Menu {
+
+    private static Menu menu;
+
+    private Menu() {
+
+    }
+
+    public static Menu getInstance() {
+
+        if (menu == null) {
+
+            menu = new Menu();
+
+        }
+
+        return menu;
+
+    }
+
+    public void opciones() {
+
+        System.out.println("----- Tienda de Donnia Mary -----");
+
+        System.out.println("1. Agregar Producto");
+        System.out.println("2. Mostrar Productos ");
+        System.out.println("3. Cargar Producto");
+        System.out.println("4. Descargar Producto");
+        System.out.println("5. Descartar Producto");
+        System.out.println("6. Restaurar Producto");
+        System.out.println("7. Editar Nombre");
+        System.out.println("8. Editar Precio");
+        System.out.println("9. Salir");
+
+    }
+
+    public void mostrar() {
+
+        int opcion = 2;
+
+        Scanner leer = new Scanner(System.in);
+        
+        ListaProductos productos = new ListaProductos();
+
+        while (opcion != 9) {
+
+            opciones();
+
+            try {
+                opcion = leer.nextInt();
+                System.out.println("");
+                switch (opcion) {
+
+                    case 1:
+                        productos.Annadir();
+                        System.out.println("");
+                        break;
+                    case 2:
+                        productos.Mostrar();
+                        System.out.println("");
+                        break;
+                    case 3:
+                        System.out.println("Ingrese cual elemento quiere(numero) ");
+                        productos.Mostrar();
+                        System.out.println("");
+                        productos.Cargar();
+                        System.out.println("");
+                        break;
+                    case 4:
+                        System.out.println("Ingrese cual elemento quiere(numero) ");
+                        productos.Mostrar();
+                        System.out.println("");
+                        productos.Descargar();
+                        System.out.println("");
+                        break;
+                    case 5:
+                        productos.Mostrar();
+                        productos.Descartar();
+                        System.out.println("");
+                        break;
+                    case 6:
+                        productos.MostrarDescartados();
+                        productos.Restaurar();
+                        System.out.println("");
+                        break;
+                    case 7:
+                        productos.Mostrar();
+                        productos.editarNombre();
+                        break;
+                    case 8:
+                        productos.Mostrar();
+                        productos.editarPrecio();
+                        break;
+                    case 9:
+                        System.out.println("Bye");
+                        break;
+                    default:
+                        System.out.println("Por favor ingrese una opcion valida");
+
+                }
+
+            } catch (InputMismatchException e) {
+
+                System.err.println("Por favor, Ingrese un número");
+
+                leer.nextLine();
+
+            }
+
+        }
+
+    }
+
+}
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package administradortienda;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.*;
+
+/**
+ *
+ * @author OLMEDO
+ */
+public class ListaProductos {
+
+    private ArrayList<Producto> productos;
+    private ArrayList<Producto> productosDescartados;
+
+    public ListaProductos() {
+        productos = new ArrayList<>();
+        productosDescartados = new ArrayList<>();
+    }
+
+    public void Annadir() {
+        Scanner leer = new Scanner(System.in);
+        Producto nuevoProducto = new Producto();
+
+        System.out.println("Ingrese el nombre del producto");
+        System.out.print(": ");
+        nuevoProducto.setNombre(leer.nextLine());
+
+        System.out.println("Ingrese la cantidad del producto");
+        System.out.print(": ");
+        nuevoProducto.setCantidad(leer.nextInt());
+
+        System.out.println("Ingrese el precio del producto");
+        System.out.print(": ");
+        nuevoProducto.setPrecio(leer.nextFloat());
+
+        productos.add(nuevoProducto);
+
+    }
+
+    public void Mostrar() {
+        for (Producto p : productos) {
+            System.out.println(productos.indexOf(p) + " - " + p.toString());
+        }
+    }
+
+    public void MostrarDescartados() {
+        for (Producto p : productosDescartados) {
+            System.out.println(productosDescartados.indexOf(p) + " - " + p.toString());
+        }
+    }
+
+    public void Cargar() {
+        Scanner leer = new Scanner(System.in);
+        int opcion = leer.nextInt();
+        System.out.println("Ingrese cuanto de este objeto se añadira al inventario: ");
+        productos.get(opcion).Cargar(leer.nextInt());
+    }
+
+    public void Descargar() {
+        Scanner leer = new Scanner(System.in);
+        int opcion = leer.nextInt();
+        System.out.println("Ingrese cuanto de este objeto se eliminara del inventario: ");
+        productos.get(opcion).Descargar(leer.nextInt());
+    }
+
+    public void Descartar() {
+        if (productos.size() != 0) {
+            System.out.println("Ingrese el producto que quiere descartar ");
+            Scanner leer = new Scanner(System.in);
+            int opcion = leer.nextInt();
+            if (opcion < productos.size()) {
+                productosDescartados.add(productos.get(opcion));
+                productos.remove(productos.get(opcion));
+            } else {
+                System.out.println("Producto NO valido");
+            }
+            }else{
+            System.out.println("No hay mas productos disponibles");
+        }
+        }
+    
+
+    public void Restaurar() {
+        if (productosDescartados.size() != 0) {
+            System.out.println("Ingrese el producto que quiere restaurar ");
+            Scanner leer = new Scanner(System.in);
+            int opcion = leer.nextInt();
+            if(opcion<productosDescartados.size()){
+            productos.add(productosDescartados.get(opcion));
+            productosDescartados.remove(productosDescartados.get(opcion));
+            }else{
+                System.out.println("Producto NO valido");
+            }
+                 
+        } else {
+            System.out.println("No hay productos disponibles para restaurar");
+        }
+    }
+    public void editarNombre(){
+        if (productos.size() != 0) {
+            System.out.println("Ingrese el producto que quiere editar(numero) ");
+            Scanner leer = new Scanner(System.in);
+            int opcion = leer.nextInt();
+            if (opcion < productos.size()) {
+                System.out.println("Nuevo nombre: ");
+                productos.get(opcion).setNombre(leer.next());
+            } else {
+                System.out.println("Producto NO valido");
+            }
+            }else{
+            System.out.println("Producto NO valido");
+        }
+    }
+    public void editarPrecio(){
+        if (productos.size() != 0) {
+            System.out.println("Ingrese el producto que quiere editar(numero) ");
+            Scanner leer = new Scanner(System.in);
+            int opcion = leer.nextInt();
+            if (opcion < productos.size()) {
+                System.out.println("Nuevo precio: ");
+                productos.get(opcion).setPrecio(leer.nextFloat());
+            } else {
+                System.out.println("Producto NO valido");
+            }
+            }else{
+            System.out.println("Producto NO valido");
+        }
+    }
+
+}
