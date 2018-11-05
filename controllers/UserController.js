@@ -49,22 +49,24 @@ userController.descargarArchivo = function (req, res) {
     `;
     let transporter = nodemailer.createTransport({
       service: 'gmail',
-      secure: false, // true for 465, false for other ports
+      secure: false, // true para 465, false cualquier otro
       port: 587,
       auth: {
-          user: 'noReplyQuathFiles@gmail.com', // generated ethereal user
-          pass: 'Quath69Files420' // generated ethereal password
+          user: 'noReplyQuathFiles@gmail.com',
+          clientId: '1065612072443-g2d6egj0l6kd1ulj5g56rhn0r3nggm5g.apps.googleusercontent.com',
+          clientSecret: 'mBzpuLr__xocWKRK1fxm4vvb',
+          pass: 'Quath69Files420'
       },
       tls:{
           rejectUnauthorized: false
       }
   });
 
-  // setup email data with unicode symbols
+
   let mailOptions = {
       from: '"'+req.user.username+'" <noReplyQuathFiles@gmail.com>',
-      to: req.user.email, // list of receivers
-      subject: 'Tu descarga de QuathFiles esta lista', // Subject line
+      to: req.user.email, 
+      subject: 'Tu descarga de QuathFiles esta lista',
       html: msj,
       attachments: [
           {
@@ -74,7 +76,6 @@ userController.descargarArchivo = function (req, res) {
       ]
   };
 
-  // send mail with defined transport object
   transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
           return console.log(error);

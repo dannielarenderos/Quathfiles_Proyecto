@@ -125,11 +125,13 @@ authController.DoContact = function(req,res){
     `;
     let transporter = nodemailer.createTransport({
       service: 'gmail',
-      secure: false, // true for 465, false for other ports
+      secure: false, // true para 465, false cualquier otro
       port: 587,
       auth: {
-          user: 'noReplyQuathFiles@gmail.com', // generated ethereal user
-          pass: 'Quath69Files420' // generated ethereal password
+          user: 'noReplyQuathFiles@gmail.com',
+          clientId: '1065612072443-g2d6egj0l6kd1ulj5g56rhn0r3nggm5g.apps.googleusercontent.com',
+          clientSecret: 'mBzpuLr__xocWKRK1fxm4vvb',
+          pass: 'Quath69Files420'
       },
       tls:{
           rejectUnauthorized: false
@@ -139,9 +141,9 @@ authController.DoContact = function(req,res){
   // setup email data with unicode symbols
   let mailOptions = {
       from: '"'+req.user.username+'" <noReplyQuathFiles@gmail.com>',
-      to: 'noReplyQuathFiles@gmail.com', // list of receivers
-      subject: 'Consulta QhathFiles', // Subject line
-      text: req.body.consulta, // plain text body
+      to: 'noReplyQuathFiles@gmail.com',
+      subject: 'Consulta QhathFiles',
+      text: req.body.consulta,
       html: msj
   };
 
