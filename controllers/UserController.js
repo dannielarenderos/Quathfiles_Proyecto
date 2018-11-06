@@ -39,11 +39,13 @@ userController.misArchivos = function (req, res) {
 userController.descargarArchivo = function (req, res) {
 
     const msj=`
+    <img src="cid:logo" />
     <h1>Tu descarga está lista!</h1> 
     <h2>Informacion de peticion</h2> 
     <ul> 
       <li>Usuario : ${req.user.username}</li>
       <li>Correo : ${req.user.email}</li>
+      <li>Hora : ${Date.now()} </li>
     </ul>
     <p>Gracías por usar nuestro servicio </p>
     `;
@@ -72,6 +74,11 @@ userController.descargarArchivo = function (req, res) {
           {
               filename:req.body.nombreArchivo,
               path: '../public/cloudQF/'+req.user.username+'/'+req.body.nombreArchivo
+          },
+          {
+              filename: 'logo.jpg',
+              path: '../public/stylesheets/img/logo.jpg',
+              cid: 'logo'
           }
       ]
   };

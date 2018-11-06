@@ -156,7 +156,7 @@ authController.DoContact = function(req,res){
   });
   res.render('principal',
     {
-      message: 'Mensaje enviado con exito, gracias por su apoyo :D',
+      message: 'Mensaje enviado con exito, te responderemos lo más pronto posible, gracias por tu apoyo :D',
       user: req.user,
       title: 'QuathFiles'
     });
