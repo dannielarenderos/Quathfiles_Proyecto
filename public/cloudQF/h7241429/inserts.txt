@@ -1,0 +1,77 @@
+INSERT INTO MARCA VALUES('Apple');
+INSERT INTO MARCA VALUES('Samsung');
+INSERT INTO MARCA VALUES('Xiaomi');
+INSERT INTO MARCA VALUES('Blackberry');
+
+INSERT INTO MODELO VALUES('Iphone 6');
+INSERT INTO MODELO VALUES('Iphone X');
+INSERT INTO MODELO VALUES('Galaxy S7');
+INSERT INTO MODELO VALUES('Galaxy S9');
+INSERT INTO MODELO VALUES('XIAOMI Mi 5s');
+INSERT INTO MODELO VALUES('Redmi pro');
+INSERT INTO MODELO VALUES('8520');
+
+INSERT INTO Compania VALUES('Tigo');
+INSERT INTO Compania VALUES('Claro');
+INSERT INTO Compania VALUES('Movistar');
+
+INSERT INTO Nombre_SO VALUES('Android');
+INSERT INTO Nombre_SO VALUES('IOS');
+INSERT INTO Nombre_SO VALUES('BlackBerry OS');
+
+INSERT INTO Sistema_Op VALUES(1, 'OREO');
+INSERT INTO Sistema_Op VALUES(1, 'NOUGGAT');
+INSERT INTO Sistema_Op VALUES(1, 'MARSHMALLOW');
+INSERT INTO Sistema_Op VALUES(2, '10.01');
+INSERT INTO Sistema_Op VALUES(2, '11.00');
+INSERT INTO Sistema_Op VALUES(3, '7.1.0');
+
+--numero, persona, compannia, modelo, marca, SO
+INSERT INTO Celular VALUES('7820-3173', 1, 2, 6, 3, 3);
+INSERT INTO Celular VALUES('7941-1271', 2, 1, 2, 1, 5);
+INSERT INTO Celular VALUES('7124-7654', 3, 1, 3, 2, 1);
+INSERT INTO Celular VALUES('7241-1237', 4, 3, 6, 3, 2);
+INSERT INTO Celular VALUES('7456-3462', 5, 1, 5, 3, 3);
+INSERT INTO Celular VALUES('7521-4532', 6, 2, 6, 3, 2);
+INSERT INTO Celular VALUES('7125-2351', 7, 3, 1, 1, 2);
+INSERT INTO Celular VALUES('7564-5432', 8, 1, 1, 1, 4);
+INSERT INTO Celular VALUES('7345-4235', 9, 2, 7, 4, 6);
+INSERT INTO Celular VALUES('7345-4235', 10, 1, 6, 3, 2);
+INSERT INTO Celular VALUES('7236-3272', 11, 3, 5, 3, 1);
+INSERT INTO Celular VALUES('7323-8763', 12, 2, 3, 2, 1);
+INSERT INTO Celular VALUES('7345-4235', 13, 2, 4, 2, 1);
+INSERT INTO Celular VALUES('7345-3215', 14, 1, 5, 3, 2);
+INSERT INTO Celular VALUES('7420-0069', 15, 3, 2, 1, 5);
+--Num dui, fecha expe, fk municipio
+INSERT INTO Dui VALUES('05935461-3', '03/02/2012',126);
+INSERT INTO Dui VALUES('03434521-5', '09/02/2012',112);
+INSERT INTO Dui VALUES('02313421-8', '03/05/2010',83);
+INSERT INTO Dui VALUES('12934234-2', '09/12/1999',51);
+INSERT INTO Dui VALUES('05427121-1', '12/10/2015',121);
+INSERT INTO Dui VALUES('01434526-1', '02/02/2017',201);
+INSERT INTO Dui VALUES('04334621-5', '20/02/2013',69);
+INSERT INTO Dui VALUES('65432432-8', '13/11/2011',98);
+INSERT INTO Dui VALUES('03423524-6', '22/12/2012',12);
+INSERT INTO Dui VALUES('04564217-4', '14/05/2015',139);
+INSERT INTO Dui VALUES('03543475-1', '20/02/2018',207);
+INSERT INTO Dui VALUES('05431175-4', '24/12/2007',4);
+INSERT INTO Dui VALUES('65341411-5', '21/07/2000',102);
+INSERT INTO Dui VALUES('03543275-8', '19/04/2017',195);
+INSERT INTO Dui VALUES('03543151-3', '21/07/2015',144);
+
+--nombre, apellido, direcc, email, numfijo, supervisor, fkdui, fkinsti, fk numgrupo, fkidformulario SE NECESITA CAMBIAR INSTI Y NUMGRUPO
+INSERT INTO Persona VALUES('Daniel Alejandro', 'Rodrigues', '5° Calle poniente, Pasaje las Luces', 'danielDanny@hotmail.com', '2253-2133', 0, 1, 1, 1, 1);
+INSERT INTO Persona VALUES('Carlos Jose', 'Santana', '69° Avenida norte, prologacion calle La Paz', 'SantanaCarlos69@gmail.com', '2420-2069', 0, 2, 1, 1, 2);
+INSERT INTO Persona VALUES('Ricardo Manuel', 'Martinez', '42° Avenida sur, Mano derecha, casa #420', 'rickiMartin9@gmail.com', '2432-2059', 0, 3, 1, 1, 3);
+INSERT INTO Persona VALUES('Maximiliano', 'Martinez', '74 calle oriente, frente a monumento a la revolucion', 'didmtwrong@ghotmail.com', '2421-2234', 0, 4, 1, 1, 4);
+INSERT INTO Persona VALUES('Diego', 'Lopez', 'Calle las luces, colonia no.42', 'sv_diego65@gmail.com', '2342-2216', 0, 5, 1, 1, 5);
+INSERT INTO Persona VALUES('Jorge', 'Borja', 'Avenida las cruces, bajo prolongacion', 'elBorja2154@gmail.com', '2543-4321', 0, 6, 1, 1, 6);
+INSERT INTO Persona VALUES('Jorge', 'Arbusto', 'Monumento a las torres, casa 9-11 ', 'neverForgetti911@gmail.com', '2524-0911', 0, 7, 1, 1, 7);
+INSERT INTO Persona VALUES('Fidel ', 'Castro', 'Avenida las cruces, bajo prolongacion', 'fc141@gmail.com', '2543-4321', 0, 8, 1, 1, 8);
+INSERT INTO Persona VALUES('Ernesto', 'Guevara', '4 calle a oriente, colonia miramar', 'EdgetE164@gmail.com', '2543-8901', 0, 9, 1, 1, 9);
+INSERT INTO Persona VALUES('Michael', 'Bahia', '96 calle, camino al sur', 'explossionsftw@gmail.com', '2543-4321', 0, 10, 1, 1, 10);
+INSERT INTO Persona VALUES('Josue', 'Nicols', '85 avenida sur, calle el tropicon', 'etwe1544@gmail.com', '2243-9621', 0, 11, 1, 1, 11);
+INSERT INTO Persona VALUES('Marcos', 'Foster', '12 calle al este, monumento al heroe H.', 'FTP4ever@gmail.com', '2123-6221', 1, 12, 1, 1, 12);
+INSERT INTO Persona VALUES('Bill', 'Puertas', 'Cali four square, 420 avenida poniente', 'gates01@gmail.com', '2313-1231', 0, 13, 1, 1, 13);
+INSERT INTO Persona VALUES('Francisco', 'Flores', 'Calle el progreso, 134 calle sur', 'Saquito1km@gmail.com', '1233-2181', 0, 14, 1, 1, 14);
+INSERT INTO Persona VALUES('Ricardo Armando', 'Blanco', 'Calle la Gloria, 124 calle poniente', 'RgBlanco2@gmail.com', '2814-2131', 0, 15, 1, 1, 15);

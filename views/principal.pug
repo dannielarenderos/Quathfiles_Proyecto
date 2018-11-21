@@ -1,0 +1,163 @@
+extends layout
+
+block content
+  header
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+      a.navbar-brand(href='#') QUATHFILES
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarColor02' aria-controls='navbarColor02' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarColor02.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='#')
+              | Home 
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='#') Features
+          li.nav-item
+            a.nav-link(href='#') About
+          if(!user)
+            li.nav-item
+              a.nav-link(href='/login') Login
+            li.nav-item
+              a.nav-link(href='/register') Registrarse
+          if(user)
+            li.nav-item
+              a.nav-link(href='/users/profile') #{user.username}
+            li.nav-item
+              a.nav-link(href='/logout') Cerrar Sesion
+            li.nav-item
+              a.nav-link(href='/subir') Subir Archivo
+            li.nav-item
+              a.nav-link(href='/users/misArchivos') Mis Archivos en QF Cloud
+            li.nav-item
+              a.nav-link(href='/contact') Contactanos :D
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false') Go to
+            .dropdown-menu(x-placement='bottom-start' style='position: absolute; transform: translate3d(0px, 46px, 0px); top: 0px; left: 0px; will-change: transform;')
+              a.dropdown-item(href='#') Action
+              a.dropdown-item(href='#') Another action
+              a.dropdown-item(href='#') Something else here
+              .dropdown-divider
+              a.dropdown-item(href='#') Separated link
+        form.form-inline.my-2.my-lg-0
+          input.form-control.mr-sm-2(type='text' placeholder='Search')
+          button.btn.btn-secondary.my-2.my-sm-0(type='submit') Search
+  .jumbotron
+    h2.display-3 Hello, world!
+    if(message)
+      p #{message}
+    p.lead
+      | This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+      | featured content or information.
+    hr.my-4
+    p
+      | It uses utility classes for typography and spacing to space content out within the larger container.
+    p.lead
+      a.btn.btn-primary.btn-lg(href='#' role='button') Learn more
+  .jumbotron
+    h2.display-3 Hello, world!
+    p.lead
+      | This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+      | featured content or information.
+    hr.my-4
+    p
+      | It uses utility classes for typography and spacing to space content out within the larger container.
+    p.lead
+      a.btn.btn-primary.btn-lg(href='#' role='button') Learn more
+  .jumbotron
+    h2.display-3 Hello, world!
+    p.lead
+      | This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+      | featured content or information.
+    hr.my-4
+    p
+      | It uses utility classes for typography and spacing to space content out within the larger container.
+    p.lead
+      a.btn.btn-primary.btn-lg(href='#' role='button') Learn more
+  // Footer
+  footer.page-footer.font-small.stylish-color-dark.pt-4
+    // Footer Links
+    .container.text-center.text-md-left
+      // Grid row
+      .row
+        // Grid column
+        .col-md-4.mx-auto
+          // Content
+          h5.font-weight-bold.text-uppercase.mt-3.mb-4 Footer Content
+          p
+            | Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet,
+            | consectetur
+            | adipisicing elit.
+        // Grid column
+        hr.clearfix.w-100.d-md-none
+        // Grid column
+        .col-md-2.mx-auto
+          // Links
+          h5.font-weight-bold.text-uppercase.mt-3.mb-4 Links
+          ul.list-unstyled
+            li
+              a(href='#!') Link 1
+            li
+              a(href='#!') Link 2
+            li
+              a(href='#!') Link 3
+            li
+              a(href='#!') Link 4
+        // Grid column
+        hr.clearfix.w-100.d-md-none
+        // Grid column
+        .col-md-2.mx-auto
+          // Links
+          h5.font-weight-bold.text-uppercase.mt-3.mb-4 Links
+          ul.list-unstyled
+            li
+              a(href='#!') Link 1
+            li
+              a(href='#!') Link 2
+            li
+              a(href='#!') Link 3
+            li
+              a(href='#!') Link 4
+        // Grid column
+        hr.clearfix.w-100.d-md-none
+        // Grid column
+        .col-md-2.mx-auto
+          // Links
+          h5.font-weight-bold.text-uppercase.mt-3.mb-4 Links
+          ul.list-unstyled
+            li
+              a(href='#!') Link 1
+            li
+              a(href='#!') Link 2
+            li
+              a(href='#!') Link 3
+            li
+              a(href='#!') Link 4
+        // Grid column
+      // Grid row
+    // Footer Links
+    // Social buttons
+    ul.list-unstyled.list-inline.text-center
+      li.list-inline-item
+        a.btn-floating.btn-fb.mx-1(href='#')
+          i.fab.fa-facebook
+      li.list-inline-item
+        a.btn-floating.btn-tw.mx-1(href='#!')
+          i.fab.fa-twitter
+      li.list-inline-item
+        a.btn-floating.btn-gplus.mx-1(href='#!')
+          i.fab.fa-google-plus-g
+      li.list-inline-item
+        a.btn-floating.btn-li.mx-1(href='#!')
+          i.fab.fa-linkedin-in
+      li.list-inline-item
+        a.btn-floating.btn-dribbble.mx-1(href='#!')
+          i.fab.fa-dribbble
+    // Social buttons
+    // Copyright
+    .footer-copyright.text-center.py-3
+      | &copy; 2018 Copyright:
+      a(href='')  Quathfiles.com
+    // Copyright
+  // Footer

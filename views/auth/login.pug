@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  div(class='alerts')
+    while message = flash.shift()
+      a.alert(class='alert-' + message.type) #{message.message}
+  form.form-signin(action="/login" method="post")
+    .text-center.mb-4
+      h1.h3.mb-3.font-weight-normal Sign in 
+    .form-label-group
+      input#inputEmail.form-control(type='text' name='username' placeholder='user' required='' autofocus='')
+    .form-label-group
+      input#inputPassword.form-control(type='password' name='password' placeholder='Password' required='')
+    .text-center
+      label
+        input(type='checkbox' value='remember-me')
+        |  Remember me
+    button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+    .footer-copyright.text-center.py-3
+      | &copy; 2018 Copyright:
+      a(href='')  Quathfiles.com

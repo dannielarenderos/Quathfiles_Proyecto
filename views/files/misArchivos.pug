@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    p Archivos de #{user.username}
+    
+    if(files)
+        each i, n in files
+            p= (n+1)+" - "+i
+    h3 Descargar Archivos :0
+    form(action="/users/misArchivos", method="post")
+        input#nombreArchivo(type='text' name='nombreArchivo' placeholder='Escriba el nombre del archivo que quiere descargar')
+        input(type='submit' value='Descargar :D')
