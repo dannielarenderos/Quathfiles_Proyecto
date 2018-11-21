@@ -4728,6 +4728,12 @@ input[type="button"].btn-block {
   color: #fff;
 }
 
+
+.combo {
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+}
 .card {
   position: relative;
   display: -webkit-box;
@@ -4760,6 +4766,13 @@ input[type="button"].btn-block {
   border-bottom-left-radius: 0.25rem;
 }
 
+.CarM {    
+max-width: 30rem;
+margin: 6%;
+
+}
+
+
 .card-body {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
@@ -4791,7 +4804,6 @@ input[type="button"].btn-block {
 .card-header {
   padding: 0.50rem 1.25rem;
   margin-bottom: 0;
-  margin-top: 0.5rem;
   border-radius: 0.6em;
     background-color: rgba(190, 177, 177, 0.39);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
@@ -5274,12 +5286,12 @@ footer {
 }
 
 #jumboCon {
-  margin-top:5.5%;
+  margin-top:3.5%;
 }
 
 
 #jumboForm {
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 .jumbotron_us {
