@@ -22,7 +22,7 @@ var usersRouter = require('./routes/users');
 // Conecct to database
 mongoose.Promise = global.Promise;
 
-mongoose.connect( 'mongodb://localhost/qFiles' ||'mongodb://olme59:4424fa15@ds155263.mlab.com:55263/qfiles' , {
+mongoose.connect('mongodb://olme59:4424fa15@ds155263.mlab.com:55263/qfiles' , {
     useNewUrlParser: true
   })
   .then(() => console.log('connection succesful'))
