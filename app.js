@@ -10,7 +10,7 @@ var cors = require('cors');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var localStrategy = require('passport-local').Strategy;
-var user = require('./models/user');
+var user = require('./models/User');
 var flash = require('flash');
 var upload= require("express-fileupload");
 
@@ -22,7 +22,7 @@ var usersRouter = require('./routes/users');
 // Conecct to database
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/qFiles', {
+mongoose.connect('mongodb://olme59:4424fa15@ds155263.mlab.com:55263/qfiles' || 'mongodb://localhost/qFiles', {
     useNewUrlParser: true
   })
   .then(() => console.log('connection succesful'))

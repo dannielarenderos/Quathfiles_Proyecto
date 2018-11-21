@@ -51,9 +51,9 @@ authController.doRegister = function (req, res) {
     } else {
 
       passport.authenticate('local')(req, res, function () {
-        fs.mkdirSync('../public/cloudQF/' + username);
-        res.redirect('/');
       });
+      fs.mkdirSync('../public/cloudQF/' + username);
+      res.redirect('/');
     }
   });
 
@@ -101,7 +101,7 @@ authController.doUpload = function (req, res) {
       console.log('Subido con exito');
     })
   }
-  res.render('principal',
+  return res.render('principal',
     {
       message: 'Archivo subido con exito',
       user: req.user,
