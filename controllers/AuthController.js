@@ -97,20 +97,18 @@ authController.doUpload = function (req, res) {
     console.log(req.files);
     var file = req.files.archivo;
     var nombreArchivo = file.name;
-    file.mv("../public/cloudQF/" + req.user.username + "/" + nombreArchivo, function (err) {
-      if (err) {
-        res.send('error ocurred');
-        throw err;
+    file.mv((path.join(__dirname,"..","public","cloudQF",req.user.username,nombreArchivo),{recursive: true},function(err){
+      
+      if(!err){
+        //console.log('Subido con exito');
+        res.render('principal', {
+          user: req.user,
+          message: "Subido con exito!",
+          title: 'QuathFiles'
+        })
       }
-      console.log('Subido con exito');
-    })
+    } ));
   }
-  return res.render('principal',
-    {
-      message: 'Archivo subido con exito',
-      user: req.user,
-      title: 'QuathFiles'
-    });
 };
 
 authController.Contact = function(req,res){
