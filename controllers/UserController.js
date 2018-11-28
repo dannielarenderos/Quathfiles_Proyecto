@@ -18,7 +18,7 @@ userController.profile = function (req, res) {
 
 userController.misArchivos = function (req, res) {
     var files = [];
-    var walker = walk.walk('../public/cloudQF/'+req.user.username, { followLinks: false });
+    var walker = walk.walk('../public/cloudQF/'+req.user.username);
 
     walker.on('file', function (root, stat, next) {
     //  files.push(root + '/' + stat.name);    root me devuelve la ruta completa, no lo usaré por "seguridad"
@@ -73,11 +73,11 @@ userController.descargarArchivo = function (req, res) {
       attachments: [
           {
               filename:req.body.nombreArchivo,
-              path: '../public/cloudQF/'+req.user.username+'/'+req.body.nombreArchivo
+              path: 'public/cloudQF/'+req.user.username+'/'+req.body.nombreArchivo
           },
           {
               filename: 'logo.jpg',
-              path: '../public/stylesheets/img/logo.jpg',
+              path: 'public/stylesheets/img/logo.jpg',
               cid: 'logo'
           }
       ]

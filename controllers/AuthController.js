@@ -4,15 +4,29 @@ var passport = require("passport");
 var User = require("../models/User");
 var fs = require("fs");
 var path = require('path');
-var upload = require("express-fileupload");
+//var upload = require("express-fileupload");
 
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
-app.use(upload());
+//app.use(upload());
 var expressValidator = require('express-validator');
 
 var nodemailer= require('nodemailer');
+
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, path.join(__dirname,"..","public","cloudQF",req.user.username,"/"));
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({storage: storage}).single('archivo');
+
 
 var authController = {};
 
@@ -47,17 +61,15 @@ authController.doRegister = function (req, res) {
     if (err) {
       //console.log('Error de registro(pass)');
       console.log(err);
-      return res.render('auth/register', {
+      return res.redirect('/register', {
         user: user
       });
     } else {
+      fs.mkdir(path.join(__dirname,"..","public","cloudQF",username),{recursive: true},function(err){});
 
       passport.authenticate('local')(req, res, function () {
+        res.redirect('/');
       });
-      fs.mkdir(path.join(__dirname,"..","public","cloudQF",username),{recursive: true},function(err){
-          res.json({err});
-      } );
-      
     }
   });
 
@@ -92,8 +104,16 @@ authController.Upload = function (req, res) {
 };
 
 authController.doUpload = function (req, res) {
+  upload(req, res , function(err){
+    if(err){
 
-  if (req.files) {
+    }
+    else{
+      res.json(req.file);
+    }
+  })
+
+  /*if (req.files) {
     console.log(req.files);
     var file = req.files.archivo;
     var nombreArchivo = file.name;
@@ -109,6 +129,7 @@ authController.doUpload = function (req, res) {
       }
     } ));
   }
+  */
 };
 
 authController.Contact = function(req,res){

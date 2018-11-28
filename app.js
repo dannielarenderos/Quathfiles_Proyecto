@@ -2,6 +2,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const bodyParser = require("body-parser");
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
@@ -12,12 +13,13 @@ var MongoStore = require('connect-mongo')(session);
 var localStrategy = require('passport-local').Strategy;
 var user = require('./models/User');
 var flash = require('flash');
-var upload= require("express-fileupload");
+//var upload= require("express-fileupload");
 
 //require('./config/passport');
 // Import routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var profileRouter= require('./routes/profile');
 
 // Conecct to database
 mongoose.Promise = global.Promise;
@@ -36,6 +38,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use('/uploads', express.static('uploads'));
+
 app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
@@ -44,7 +48,21 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(upload());
+//app.use(upload());
+app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
+  next();
+});
 
 // Manejando sessiones
 app.use(session({
@@ -68,6 +86,8 @@ passport.deserializeUser(user.deserializeUser());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/profile', profileRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

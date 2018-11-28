@@ -3,6 +3,8 @@ var express = require('express');
 var router = express.Router();
 var auth = require("../controllers/AuthController.js");
 
+
+
 // restrict index for logged in user only
 router.get('/', auth.home);
 
@@ -25,9 +27,13 @@ router.get('/logout', auth.logout);
 router.get('/subir', auth.Upload);
 //router para hacer subida
 router.post('/subir', auth.doUpload);
+
 //router para comentarios
 router.get('/contact', auth.Contact);
 //router para enviar comentarios
 router.post('/contact', auth.DoContact);
+
+
+
 
 module.exports = router;
