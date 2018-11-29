@@ -2,6 +2,7 @@
 var mongoose = require("mongoose");
 var passport = require("passport");
 var User = require("../models/User");
+var Archivo = require("../models/Archivo");
 var fs = require("fs");
 var path = require('path');
 //var upload = require("express-fileupload");
@@ -12,20 +13,20 @@ var app = express();
 //app.use(upload());
 var expressValidator = require('express-validator');
 
-var nodemailer= require('nodemailer');
+var nodemailer = require('nodemailer');
 
 const multer = require('multer');
 
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, path.join(__dirname,"..","public","cloudQF",req.user.username,"/"));
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "..", "public", "cloudQF", req.user.username, "/"));
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, file.originalname);
   }
 });
 
-const upload = multer({storage: storage}).single('archivo');
+const upload = multer({ storage: storage }).single('archivo');
 
 
 var authController = {};
@@ -65,7 +66,7 @@ authController.doRegister = function (req, res) {
         user: user
       });
     } else {
-      fs.mkdir(path.join(__dirname,"..","public","cloudQF",username),{recursive: true},function(err){});
+      fs.mkdir(path.join(__dirname, "..", "public", "cloudQF", username), { recursive: true }, function (err) { });
 
       passport.authenticate('local')(req, res, function () {
         res.redirect('/');
@@ -104,40 +105,49 @@ authController.Upload = function (req, res) {
 };
 
 authController.doUpload = function (req, res) {
-  upload(req, res , function(err){
-    if(err){
+  upload(req, res, function (err) {
+    if (err) {
 
     }
-    else{
-      res.json(req.file);
-    }
-  })
-
-  /*if (req.files) {
-    console.log(req.files);
-    var file = req.files.archivo;
-    var nombreArchivo = file.name;
-    file.mv((path.join(__dirname,"..","public","cloudQF",req.user.username,nombreArchivo),{recursive: true},function(err){
-      
-      if(!err){
-        //console.log('Subido con exito');
-        res.render('principal', {
-          user: req.user,
-          message: "Subido con exito!",
-          title: 'QuathFiles'
+    else {
+      //res.json(req.file);
+      const archivo = new Archivo({
+        _id: new mongoose.Types.ObjectId(),
+        nombreArchivo: req.file.filename,
+        nombreUsuario: req.user.username,
+        fecha: Date.now()
+      });
+      archivo
+        .save()
+        .then(result => {
+          console.log(result);
+          res.status(201).json({
+            message: "Archivo archivado con exito",
+            created: {
+              _id: result._id,
+              nombreArchivo: result.nombreArchivo,
+              noombreUsuario: result.noombreUsuario,
+              fecha: result.fecha,
+              starred: result.starred
+            },
+            request: {
+              type: 'GET',
+            }
+          });
         })
+        .catch(err => {
+          console.log(err);
+        });
       }
-    } ));
-  }
-  */
-};
+    })
+  };
 
-authController.Contact = function(req,res){
+authController.Contact = function (req, res) {
   res.render('contact');
 }
 
-authController.DoContact = function(req,res){
-    const msj=`
+authController.DoContact = function (req, res) {
+  const msj = `
     <p>Nueva consulta</p> 
     <h2>Informacion de contacto</h2> 
     <ul> 
@@ -147,36 +157,36 @@ authController.DoContact = function(req,res){
     <h2>Asunto: ${req.body.asunto}</h3>
     <h3>Mensaje: ${req.body.consulta}</h3>
     `;
-    let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      secure: false, // true para 465, false cualquier otro
-      port: 587,
-      auth: {
-          user: 'noReplyQuathFiles@gmail.com',
-          clientId: '1065612072443-g2d6egj0l6kd1ulj5g56rhn0r3nggm5g.apps.googleusercontent.com',
-          clientSecret: 'mBzpuLr__xocWKRK1fxm4vvb',
-          pass: 'Quath69Files420'
-      },
-      tls:{
-          rejectUnauthorized: false
-      }
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    secure: false, // true para 465, false cualquier otro
+    port: 587,
+    auth: {
+      user: 'noReplyQuathFiles@gmail.com',
+      clientId: '1065612072443-g2d6egj0l6kd1ulj5g56rhn0r3nggm5g.apps.googleusercontent.com',
+      clientSecret: 'mBzpuLr__xocWKRK1fxm4vvb',
+      pass: 'Quath69Files420'
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
   });
 
   // setup email data with unicode symbols
   let mailOptions = {
-      from: '"'+req.user.username+'" <noReplyQuathFiles@gmail.com>',
-      to: 'noReplyQuathFiles@gmail.com',
-      subject: 'Consulta QhathFiles',
-      text: req.body.consulta,
-      html: msj
+    from: '"' + req.user.username + '" <noReplyQuathFiles@gmail.com>',
+    to: 'noReplyQuathFiles@gmail.com',
+    subject: 'Consulta QhathFiles',
+    text: req.body.consulta,
+    html: msj
   };
 
   // send mail with defined transport object
   transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-          return console.log(error);
-      }
-      console.log('Message sent'+info);
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message sent' + info);
   });
   res.render('principal',
     {

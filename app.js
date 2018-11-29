@@ -12,6 +12,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var localStrategy = require('passport-local').Strategy;
 var user = require('./models/User');
+var archivo = require('./models/Archivo');
 var flash = require('flash');
 //var upload= require("express-fileupload");
 
