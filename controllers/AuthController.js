@@ -49,7 +49,7 @@ authController.doRegister = function (req, res) {
   var username = req.body.username;
   var email = req.body.email;
   var password = req.body.password;
-  var passwordConfirmar = req.body.passwordConfirmar;
+
   /*
     req.checkBody('username', 'Userame no puede ser vacio').notEmpty();
     req.checkBody('email', 'Email no puede ser vacio').isEmail();
