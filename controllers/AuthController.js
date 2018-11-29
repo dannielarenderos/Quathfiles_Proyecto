@@ -144,6 +144,7 @@ authController.DoContact = function(req,res){
       <li>Usuario : ${req.user.username}</li>
       <li>Correo : ${req.user.email}</li>
     </ul>
+    <h2>Asunto: ${req.body.asunto}</h3>
     <h3>Mensaje: ${req.body.consulta}</h3>
     `;
     let transporter = nodemailer.createTransport({

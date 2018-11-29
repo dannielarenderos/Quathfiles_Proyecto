@@ -1,9 +1,12 @@
 extends ../layout
 
 block content
-  form.form-signin(action="/register" method="post")
+
+  form#jumboForm.jumbotron_us(action="/register" method="post")
     .text-center.mb-4
-      h1.h3.mb-3.font-weight-normal Sign up 
+     div
+        img(src='../../stylesheets/img/logo_W.gif', alt='')
+        .card-header Sign in
     .form-label-group
       input#inputUser.form-control(type='text' name='username' placeholder='Username' required='' autofocus='' value=user?user.username:'')
     .form-label-group

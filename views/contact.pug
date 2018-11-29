@@ -1,7 +1,15 @@
 extends layout
 
 block content
-
+        
     form(action='/contact', method='post')
-        input#consulta(type='text', name='consulta')
-        input(type='submit', value='Enviar :D')
+      #jumboCon.jumbotron_us
+        .card-header CONTACT US
+        .form-group
+          label(for='exampleTextarea') Asunto
+          textarea#exampleTextarea.form-control(name='asunto', rows='3', required='')
+          label(for='exampleTextarea') Mensaje
+          textarea#exampleTextarea.form-control(name='consulta', rows='3', required='')
+        .modal-footer
+          button.btn.btn-primary(type='submit') Send
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
