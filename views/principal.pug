@@ -3,7 +3,8 @@ extends layout
 block content
   header
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-      a.navbar-brand(href='#') QUATHFILES
+      a.navbar-brand(href='#') QUATHFILES 
+        i.fas.fa-folder
       button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarColor02' aria-controls='navbarColor02' aria-expanded='false' aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarColor02.collapse.navbar-collapse
@@ -11,16 +12,23 @@ block content
         
           if(!user)
             li.nav-item
-              a.nav-link(href='/login') Login
+              a.nav-link(href='/login') Login 
+                i.fas.fa-sign-in-alt
             li.nav-item
-              a.nav-link(href='/register') Registrarse
+              a.nav-link(href='/register') Registrarse  
+                i.fas.fa-user-plus
           if(user)
             li.nav-item
-              a.nav-link(href='/users/profile') Sesion iniciada con: #{user.username}
+              a.nav-link(href='/users/profile') Sesion iniciada con: #{user.username} 
+                i.fas.fa-user
             li.nav-item
-              a.nav-link(href='/logout') Cerrar Sesion
+              a.nav-link(href='/logout') Cerrar Sesion 
+                i.fas.fa-user-alt-slash
+
             li.nav-item
-              a.nav-link(href='/contact') Contactanos 
+              a.nav-link(href='/contact') Contactanos  
+                i.far.fa-comment-alt
+
       
   .jumbotron
     h2.display-3 Hello, world!

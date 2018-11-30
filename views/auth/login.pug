@@ -5,16 +5,18 @@ block content
     .text-center.mb-4
       div
         img(src='../../stylesheets/img/logo_W.gif', alt='')
-        .card-header Sign in
+        .card-header Sign in  
+          i.fas.fa-sign-in-alt
+
     .form-label-group
-      input#inputEmail.form-control(type='text', name='username', placeholder='Email address', required='', autofocus='')
+      input#inputEmail.form-control(type='text', name='username', placeholder='Username', required='', autofocus='')
     .form-label-group
       input#inputPassword.form-control(type='password', name='password', placeholder='Password', required='')
     .text-center
       label
         input(type='checkbox', value='remember-me')
         |  Remember me
-    button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+    button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in 
     .footer-copyright.text-center.py-3
       | © 2018 Copyright:
       a(href='')  Quathfiles.com

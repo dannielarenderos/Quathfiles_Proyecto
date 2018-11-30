@@ -4,12 +4,22 @@ block content
         
     form(action='/contact', method='post')
       #jumboCon.jumbotron_us
-        .card-header CONTACT US
+        .card-header CONTACT US  
+          i.fas.fa-comment-alt
+
         .form-group
-          label(for='exampleTextarea') Asunto
+          label(for='exampleTextarea') Asunto  
+            i.fas.fa-pen-alt
+
           textarea#exampleTextarea.form-control(name='asunto', rows='3', required='')
-          label(for='exampleTextarea') Mensaje
+
+          label(for='exampleTextarea') Mensaje 
+            i.fas.fa-comment
+
           textarea#exampleTextarea.form-control(name='consulta', rows='3', required='')
         .modal-footer
-          button.btn.btn-primary(type='submit') Send
-          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+          button.btn.btn-primary(type='submit') Send 
+            i.fas.fa-share-square
+
+          button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel 
+            i.fas.fa-ban

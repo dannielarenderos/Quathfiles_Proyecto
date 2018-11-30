@@ -20,21 +20,12 @@ html(lang='en')
             li.nav-item.active
               a.nav-link(href='/')
                 | Home 
+                i.fas.fa-home
                 span.sr-only (current)
             li.nav-item
-              a.nav-link(href='#') Features
-            li.nav-item
-              a.nav-link(href='#') Contact us
-            li.nav-item
-              a.nav-link(href='#') About
-            li.nav-item.dropdown
-              a.nav-link.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false') Go to
-              .dropdown-menu(x-placement='bottom-start', style='position: absolute; transform: translate3d(0px, 46px, 0px); top: 0px; left: 0px; will-change: transform;')
-                a.dropdown-item(href='#') Action
-                a.dropdown-item(href='#') Another action
-                a.dropdown-item(href='#') Something else here
-                .dropdown-divider
-                a.dropdown-item(href='#') Separated link
+              a.nav-link(href='#') Contact us  
+                i.far.fa-comment-alt
+
           form.form-inline.my-2.my-lg-0
             input.form-control.mr-sm-2(type='text', placeholder='Search')
             button.btn.btn-secondary.my-2.my-sm-0(type='submit') Search
@@ -45,26 +36,34 @@ html(lang='en')
           nav.vertical-menu
             ul
               li
-                a(href='/users/profile') Página principal
+                a(href='/users/profile') Página principal  
+                 
+                  i.fas.fa-file
+
               li
-                a(href='/users/profile/todosLosArchivos') Archivos
+                a(href='/users/profile/todosLosArchivos') Archivos 
+                  i.fas.fa-archive
+
       main.main
-        h2 Página principal
+        h2 Página principal 
+          i.fas.fa-file-code
         .grid-columns-buttones
           .btn-group.btn-group-toggle.gridBoto(data-toggle='buttons')
             label.btn.btn-primary.active.Bottones
               input(type='radio', name='viewType')
-              |  List View
+              |  List View 
               i.fas.fa-list
             label.btn.btn-primary.active.Bottones
               input(type='radio', name='viewType')
-              |  Grid View
+              |  Grid View 
               i.fas.fa-th
           form.form-group.form-group-mar(action='/subir', method='post', enctype="multipart/form-data")
             .input-group.mb-3
               .custom-file
                 input.custom-file-input(type='file', name='archivo')
-                label.custom-file-label(for='archivo') Choose file
+                label.custom-file-label(for='archivo') Choose file 
+                  i.fas.fa-folder-open
+
               .input-group-append
                 input.input-group-text(type='submit' value='Upload')
         table.table.table-hover
