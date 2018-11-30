@@ -9,16 +9,11 @@ var nodemailer= require('nodemailer');
 var userController = {};
 
 userController.profile = function (req, res) {
+    if(!req.user){
+        res.redirect('/');
+        alert('NEL PERRO LOCO');
+    }
     res.render('dashboard/mainDocuments');
-
-    /*
-    User.findOne({
-        username: req.user.username
-    }, function (err, docs) {
-        if (err) next(err);
-        res.send(docs);
-    });
-    */
 };
 
 userController.misArchivos = function (req, res) {
@@ -103,6 +98,7 @@ userController.descargarArchivo = function (req, res) {
 }
 
 userController.profileAllFiles = function (req, res) {
+    
     res.render('dashboard/allDocuments');
 }
 
