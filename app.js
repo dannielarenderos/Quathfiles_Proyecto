@@ -14,6 +14,7 @@ var localStrategy = require('passport-local').Strategy;
 var user = require('./models/User');
 var archivo = require('./models/Archivo');
 var flash = require('flash');
+var favicon = require('serve-favicon');
 //var upload= require("express-fileupload");
 
 //require('./config/passport');
@@ -40,6 +41,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use('/uploads', express.static('uploads'));
+app.use(favicon(path.join(__dirname,'public','stylesheets','img','favicon.ico')));
 
 app.use(logger('dev'));
 app.use(cors());

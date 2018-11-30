@@ -2,18 +2,23 @@
 var mongoose = require("mongoose");
 var passport = require("passport");
 var User = require("../models/User");
+var Archivo= require('../models/Archivo');
 var walk = require('walk'); //Para obtener todos los archivos del folder del usuario
 var nodemailer= require('nodemailer');
 
 var userController = {};
 
 userController.profile = function (req, res) {
+    res.render('dashboard/mainDocuments');
+
+    /*
     User.findOne({
         username: req.user.username
     }, function (err, docs) {
         if (err) next(err);
         res.send(docs);
     });
+    */
 };
 
 userController.misArchivos = function (req, res) {
@@ -96,4 +101,23 @@ userController.descargarArchivo = function (req, res) {
       title: 'QuathFiles'
     });
 }
+
+userController.profileAllFiles = function (req, res) {
+    res.render('dashboard/allDocuments');
+}
+
+userController.getAllFiles = function (req, res) {
+    // Obtener todos los post de la base datos
+    console.log(req);
+    Archivo.find({nombreUsuario:req.user.username},function(err, files){
+        if (err) {
+            res.status(500);
+            res.json({code:500, err});
+        } else {
+            res.json({ ok:true , files});
+        }
+    });
+    // Enviarlos como respuesta en JSON
+};
+
 module.exports = userController;

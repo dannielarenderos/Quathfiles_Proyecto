@@ -33,6 +33,8 @@ router.get('/contact', auth.Contact);
 //router para enviar comentarios
 router.post('/contact', auth.DoContact);
 
+router.get('/kaka', auth.prueba);
+
 
 
 

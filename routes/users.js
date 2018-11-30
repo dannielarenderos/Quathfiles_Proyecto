@@ -8,8 +8,12 @@ var walk = require('walk'); //Para obtener todos los archivos del folder del usu
 /* GET users listing. */
 router.get('/profile',userController.profile);
 
+router.get('/profile/todosLosArchivos',userController.profileAllFiles);
+
 router.get('/misArchivos', userController.misArchivos);
 
 router.post('/misArchivos', userController.descargarArchivo);
+
+router.get('/profile/mostrarTodosLosArchivos', userController.getAllFiles);
 
 module.exports = router;

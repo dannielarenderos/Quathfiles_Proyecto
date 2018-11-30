@@ -105,6 +105,7 @@ authController.Upload = function (req, res) {
 };
 
 authController.doUpload = function (req, res) {
+  console.log(req);
   upload(req, res, function (err) {
     if (err) {
 
@@ -194,6 +195,10 @@ authController.DoContact = function (req, res) {
       user: req.user,
       title: 'QuathFiles'
     });
+}
+
+authController.prueba = function (req, res) {
+  res.render('lol');
 }
 
 module.exports = authController;
