@@ -39,13 +39,25 @@ let app = {
                         <td>${element.fecha}</td>
                         <td>${element.nombreUsuario}</td>
                         <td>${element.starred}</td>
-                        </tr>`
+                        </tr>
+                        <td>
+                            <a href="misArchivos/${element.nombreArchivo}" class="descargar">Descargar Al correo</a>
+                        </td>`
                 });
                 console.log(filas);
                 document.querySelector(".getAllFiles")
                 document.querySelector(".getAllFiles").innerHTML = filas;
-                //onsole.log(element);
-                //this.addRow(element);
+                let descargar = document.querySelectorAll('.descargar');
+                descargar.forEach(item => {
+                    item.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        let url = this["href"];
+                        //console.log(url);
+                        fetch(url, {
+                            method: "POST"
+                        })
+                    });
+                });
             });
 
     }

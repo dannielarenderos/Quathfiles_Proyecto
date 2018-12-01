@@ -141,6 +141,7 @@ authController.doUpload = function (req, res) {
         });
       }
     })
+    res.render('dashboard/mainDocuments');
   };
 
 authController.Contact = function (req, res) {

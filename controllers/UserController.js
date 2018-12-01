@@ -72,8 +72,8 @@ userController.descargarArchivo = function (req, res) {
       html: msj,
       attachments: [
           {
-              filename:req.body.nombreArchivo,
-              path: 'public/cloudQF/'+req.user.username+'/'+req.body.nombreArchivo
+              filename:req.params.archivo,
+              path: 'public/cloudQF/'+req.user.username+'/'+req.params.archivo
           },
           {
               filename: 'logo.jpg',

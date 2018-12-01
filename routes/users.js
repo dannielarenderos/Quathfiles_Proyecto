@@ -12,7 +12,7 @@ router.get('/profile/todosLosArchivos',userController.profileAllFiles);
 
 router.get('/misArchivos', userController.misArchivos);
 
-router.post('/misArchivos', userController.descargarArchivo);
+router.post('/misArchivos/:archivo', userController.descargarArchivo);
 
 router.get('/profile/mostrarTodosLosArchivos', userController.getAllFiles);
 
