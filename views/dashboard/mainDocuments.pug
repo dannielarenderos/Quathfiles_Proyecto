@@ -32,7 +32,7 @@ html(lang='en')
     .content-area
       aside.main-aside
         .logo
-          img(src='img/logo.jpg', alt='Quathfiles logo', width='50%', height='40%')
+          img(src='../../stylesheets/img/logo_W.gif', alt='Quathfiles logo', width='50%', height='40%')
           nav.vertical-menu
             ul
               li
@@ -61,7 +61,7 @@ html(lang='en')
             .input-group.mb-3
               .custom-file
                 input.custom-file-input(type='file', name='archivo')
-                label.custom-file-label(for='archivo') Choose file 
+                label.custom-file-label(for='archivo') Choose file  
                   i.fas.fa-folder-open
 
               .input-group-append
@@ -69,10 +69,22 @@ html(lang='en')
         table.table.table-hover
           thead
             tr
-              th(scope='col') Nombre
-              th(scope='col') Modificado
-              th(scope='col') Miembros
-              th(scope='col') Favorite
+
+
+              th(scope='col') Nombre 
+                i.fas.fa-user-edit
+
+              th(scope='col') Modificado 
+                i.fas.fa-user-cog
+
+
+              th(scope='col') Miembros 
+                i.fas.fa-user-plus
+
+              th(scope='col') Favorite 
+                i.fas.fa-user-tag
+
+            
           tbody.getAllFiles
             tr.table-dark
               th(scope='row')
@@ -82,5 +94,6 @@ html(lang='en')
               td Solo tú
               td.starred
                 i.fas.fa-star
-    script(src='../../javascript/starred.js')
-    script(src='../../javascript/main.js')
+        script(src="/javascript/main.js")
+  script(src='/javascript/starred.js')
+

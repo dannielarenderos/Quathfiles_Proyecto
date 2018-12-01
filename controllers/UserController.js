@@ -101,9 +101,15 @@ userController.profileAllFiles = function (req, res) {
     
     res.render('dashboard/allDocuments');
 }
+userController.kaka = function (req, res) {
+    
+    res.render('kaka');
+}
+
 
 userController.getAllFiles = function (req, res) {
     // Obtener todos los post de la base datos
+
     console.log(req);
     Archivo.find({nombreUsuario:req.user.username},function(err, files){
         if (err) {

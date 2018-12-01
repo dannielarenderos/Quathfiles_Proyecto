@@ -16,4 +16,6 @@ router.post('/misArchivos', userController.descargarArchivo);
 
 router.get('/profile/mostrarTodosLosArchivos', userController.getAllFiles);
 
+router.get('/kaka', userController.kaka);
+
 module.exports = router;

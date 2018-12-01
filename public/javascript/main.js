@@ -1,45 +1,54 @@
-window.onload = () => {
+console.log('RTVGHBNJ');
+
+window.onload = function () {
+
     app.init();
 }
 
 let app = {
     init: function () {
-        this.addEvents();
         this.loadContent();
     },
-    addEvents: function () {
-        document.postForm.addEventListener("submit", (event) => {
-            this.submitPost(event, this.addRow);
-        });
-    },
+
     addRow: function (data) {
-        let tbody = document.getElementsByClassName("getAllFiles")[0];
+        let tbody = document.getElementsByClassName("posts")[0];
         let tr = document.createElement("tr");
-        tr.className = "table-dark";
-        tr.innerHTML = `<th scope="row">
-                        <i class="fas fa-file-pdf"></i>
-                        ${data.nombreArchivo}
-                        </th>
+        //  tr.className = "table-dark";
+
+        tr.innerHTML = `<tr>
+                        <td>${data.nombreArchivo}</td>
                         <td>${data.fecha}</td>
                         <td>${data.nombreUsuario}</td>
-                        <td>${data.starred}</td>`;
+                        <td>${data.starred}</td>
+                        </tr>`;
         tbody.appendChild(tr);
     },
+
     loadContent: function () {
         fetch('/users/profile/mostrarTodosLosArchivos', {
-                method: 'GET'
-            }).then(res => {
-                return res.json()
-            })
+            method: 'GET'
+        }).then(res =>
+            res.json()
+        )
             .then(data => {
-                if (data.ok) {
-                    console.log('llegue hasta aca x2')
-                    console.log(data);
-                    data.files.forEach(element => {
-                        this.addRow(element);
-                    });
-                }
-            })
+                let filas = "";
+                data.files.forEach(element => {
+                    filas = filas + `
+                        <tr >
+                        <td>${element.nombreArchivo}</td>
+                        <td>${element.fecha}</td>
+                        <td>${element.nombreUsuario}</td>
+                        <td>${element.starred}</td>
+                        </tr>`
+                });
+                console.log(filas);
+                document.querySelector(".getAllFiles")
+                document.querySelector(".getAllFiles").innerHTML = filas;
+                //onsole.log(element);
+                //this.addRow(element);
+            });
+
     }
+
 
 }
